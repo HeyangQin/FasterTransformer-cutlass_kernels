@@ -67,10 +67,10 @@ if (BUILD_MULTI_GPU)
     target_link_libraries(nccl_utils PUBLIC ${NCCL_LIBRARIES} mpi_utils logger)
 endif()
 
-add_library(cublasINT8MMWrapper STATIC cublasINT8MMWrapper.cc)
-set_property(TARGET cublasINT8MMWrapper PROPERTY POSITION_INDEPENDENT_CODE  ON)
-set_property(TARGET cublasINT8MMWrapper PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
-target_link_libraries(cublasINT8MMWrapper PUBLIC -lcublasLt -lcudart -lcurand cublasAlgoMap cublasMMWrapper cuda_utils logger)
+# add_library(cublasINT8MMWrapper STATIC cublasINT8MMWrapper.cc)
+# set_property(TARGET cublasINT8MMWrapper PROPERTY POSITION_INDEPENDENT_CODE  ON)
+# set_property(TARGET cublasINT8MMWrapper PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
+# target_link_libraries(cublasINT8MMWrapper PUBLIC -lcublasLt -lcudart -lcurand cublasAlgoMap cublasMMWrapper cuda_utils logger)
 
 if(ENABLE_FP8)
 add_library(cublasFP8MMWrapper STATIC cublasFP8MMWrapper.cu)
@@ -80,20 +80,20 @@ target_link_libraries(cublasFP8MMWrapper PUBLIC -lcublasLt -lcudart -lcurand
                       cublasAlgoMap cublasMMWrapper nvtx_utils fp8_qgmma_1x1_utils)
 endif()
 
-add_library(custom_ar_comm STATIC custom_ar_comm.cc)
-set_property(TARGET custom_ar_comm PROPERTY POSITION_INDEPENDENT_CODE  ON)
-set_property(TARGET custom_ar_comm PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
-target_link_libraries(custom_ar_comm PUBLIC custom_ar_kernels memory_utils cuda_utils logger)
+# add_library(custom_ar_comm STATIC custom_ar_comm.cc)
+# set_property(TARGET custom_ar_comm PROPERTY POSITION_INDEPENDENT_CODE  ON)
+# set_property(TARGET custom_ar_comm PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
+# target_link_libraries(custom_ar_comm PUBLIC custom_ar_kernels memory_utils cuda_utils logger)
 
-add_library(gemm STATIC gemm.cc)
-set_property(TARGET gemm PROPERTY POSITION_INDEPENDENT_CODE  ON)
-set_property(TARGET gemm PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
-target_link_libraries(gemm PUBLIC
-                      -lcublas -lcublasLt -lcudart -lcurand
-                      cublasAlgoMap memory_utils cuda_utils logger)
-if (SPARSITY_SUPPORT)
-    target_link_libraries(gemm PUBLIC -lcusparse -lcusparseLt)
-endif()
+# add_library(gemm STATIC gemm.cc)
+# set_property(TARGET gemm PROPERTY POSITION_INDEPENDENT_CODE  ON)
+# set_property(TARGET gemm PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
+# target_link_libraries(gemm PUBLIC
+#                       -lcublas -lcublasLt -lcudart -lcurand
+#                       cublasAlgoMap memory_utils cuda_utils logger)
+# if (SPARSITY_SUPPORT)
+#     target_link_libraries(gemm PUBLIC -lcusparse -lcusparseLt)
+# endif()
 
 add_library(cuda_fp8_utils STATIC cuda_fp8_utils.cu)
 set_property(TARGET cuda_fp8_utils PROPERTY POSITION_INDEPENDENT_CODE  ON)

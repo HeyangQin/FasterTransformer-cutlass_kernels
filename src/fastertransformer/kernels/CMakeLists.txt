@@ -159,18 +159,18 @@ set_property(TARGET xlnet_attention_kernels PROPERTY POSITION_INDEPENDENT_CODE  
 set_property(TARGET xlnet_attention_kernels PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
 
 
-set(decoder_masked_multihead_attention_files
-    decoder_masked_multihead_attention.cu
-)
-file(GLOB decoder_masked_multihead_attention_files ${decoder_masked_multihead_attention_files} ./decoder_masked_multihead_attention/*.cu)
-add_library(decoder_masked_multihead_attention STATIC ${decoder_masked_multihead_attention_files})
-set_property(TARGET decoder_masked_multihead_attention PROPERTY POSITION_INDEPENDENT_CODE  ON)
-set_property(TARGET decoder_masked_multihead_attention PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
+# set(decoder_masked_multihead_attention_files
+#     decoder_masked_multihead_attention.cu
+# )
+# file(GLOB decoder_masked_multihead_attention_files ${decoder_masked_multihead_attention_files} ./decoder_masked_multihead_attention/*.cu)
+# add_library(decoder_masked_multihead_attention STATIC ${decoder_masked_multihead_attention_files})
+# set_property(TARGET decoder_masked_multihead_attention PROPERTY POSITION_INDEPENDENT_CODE  ON)
+# set_property(TARGET decoder_masked_multihead_attention PROPERTY CUDA_RESOLVE_DEVICE_SYMBOLS  ON)
 
-if(ENABLE_FP8)
-add_executable(decoder_masked_multihead_attention_fp8_test decoder_masked_multihead_attention_fp8_test.cc)
-target_link_libraries(decoder_masked_multihead_attention_fp8_test PUBLIC decoder_masked_multihead_attention memory_utils)
-endif()
+# if(ENABLE_FP8)
+# add_executable(decoder_masked_multihead_attention_fp8_test decoder_masked_multihead_attention_fp8_test.cc)
+# target_link_libraries(decoder_masked_multihead_attention_fp8_test PUBLIC decoder_masked_multihead_attention memory_utils)
+# endif()
 
 add_library(add_residual_kernels STATIC add_residual_kernels.cu)
 set_property(TARGET add_residual_kernels PROPERTY POSITION_INDEPENDENT_CODE  ON)

@@ -2,6 +2,13 @@
 
 This repository provides a script and recipe to run the highly optimized transformer-based encoder and decoder component, and it is tested and maintained by NVIDIA.
 
+**To compile**
+```
+mkdir build
+cd build
+cmake .. -DCMAKE_BUILD_TYPE=Release && make -j40
+```
+
 ## Table Of Contents
 
 - [FasterTransformer](#fastertransformer)
